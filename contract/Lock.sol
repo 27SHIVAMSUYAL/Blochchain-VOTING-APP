@@ -22,8 +22,6 @@ contract Upload {
 
     Election[] public allElections; // to store list of all elections
 
-    mapping(address => bool) public voters; // to keep record of who has already voted and who has not voted
-
     address public contract_owner = msg.sender;
 
     // to start a new election
