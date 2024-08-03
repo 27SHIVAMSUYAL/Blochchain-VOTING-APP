@@ -339,7 +339,7 @@ function App() {
   return (
     <div>
       <a href='./'><h1 className='text-2xl text-red-400 text-center font-bold'> Voting app </h1></a>
-      <h2 className='text-2xl text-red-200 text-center font-bold'> YOU NEED META MASK ACCOUNT AND EXTENTION IN YOUR BROWSER  </h2>
+      
       {isConnected ? (<Connected isConnected={isConnected} account={account} balance={balance} StartElection={StartElection} getresult={getresult} vote={vote} winner={winner} add={add} displayCandidates={displayCandidates} />) : (<Login connectWallet={connectToMetamask} />)}
 
 
