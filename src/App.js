@@ -7,7 +7,6 @@ import Connected from './components/connected';
 const { ethers } = require("ethers");
 
 
-
 function App() {
   const [provider, setProvider] = useState(null);
   const [signer, setSigner] = useState(null);
@@ -216,7 +215,7 @@ function App() {
 
         console.log("Metamask Connected : " + address);
         setIsConnected(true);
-
+       
 
       } catch (err) {
         console.error(err);
@@ -231,23 +230,25 @@ function App() {
     const daiContract = new ethers.Contract(daiAddress, daiAbi, signer);
 
     try {
-        // Simulate the call to get the returned index
-        const index = await daiContract.callStatic.startElection(duration);
-        console.log("Simulated startElection call returned index:", index.toString());
+      // Simulate the call to get the returned index
+      const index = await daiContract.callStatic.startElection(duration);
+      console.log("Simulated startElection call returned index:", index.toString());
 
-        // Send the transaction to start the election
-        const tx = await daiContract.startElection(duration);
-        console.log("Transaction sent:", tx.hash);
+      // Send the transaction to start the election
+      const tx = await daiContract.startElection(duration);
+      console.log("Transaction sent:", tx.hash);
 
-        // Wait for the transaction to be mined
-        const receipt = await tx.wait();
-        console.log("Transaction mined:", receipt.transactionHash);
+      // Wait for the transaction to be mined
+      const receipt = await tx.wait();
+      console.log("Transaction mined:", receipt.transactionHash);
 
-        console.log("Election successfully started with index:", index.toString());
+      console.log("Election successfully started with index:", index.toString());
+      if (index.toString()) { alert(`The Election Started sucessfully with election number : ${index.toString()} for a duration of ${duration} min`); }
+
     } catch (error) {
-        console.error("Error starting election:", error);
+      console.error("Error starting election:", error);
     }
-}
+  }
 
 
 
@@ -339,7 +340,7 @@ function App() {
   return (
     <div>
       <a href='./'><h1 className='text-2xl text-red-400 text-center font-bold'> Voting app </h1></a>
-      
+
       {isConnected ? (<Connected isConnected={isConnected} account={account} balance={balance} StartElection={StartElection} getresult={getresult} vote={vote} winner={winner} add={add} displayCandidates={displayCandidates} />) : (<Login connectWallet={connectToMetamask} />)}
 
 
